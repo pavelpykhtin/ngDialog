@@ -216,6 +216,26 @@ describe('ngDialog', function () {
 
   });
 
+  describe('bindToController data checking on openConfirm', function () {
+  	var Ctrl;
+  	beforeEach(inject(function (ngDialog, $timeout) {
+  		Ctrl = spy('DialogCtrl');
+  		ngDialog.openConfirm({
+  			controller: Ctrl,
+  			controllerAs: 'CtrlVM',
+  			bindToController: true,
+  			data: {
+  				testData: 'testData'
+  			}
+  		});
+  		$timeout.flush();
+  	}));
+
+  	it('should have placed confirm function on the controller', function () {
+  		expect(Ctrl.calls.first().object.confirm).toEqual(jasmine.any(Function));
+  	});
+  });
+
   describe('openOnePerName', function () {
       var dialogOptions = {
           name: 'do something'
