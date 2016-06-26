@@ -214,6 +214,9 @@ describe('ngDialog', function () {
       expect(Ctrl.calls.first().object.closeThisDialog).toEqual(jasmine.any(Function));
     });
 
+    it('should not have placed confirm function on the controller', function() {
+      expect(Ctrl.calls.first().object.confirm).toBeUndefined();
+    });
   });
 
   describe('bindToController data checking on openConfirm', function () {
